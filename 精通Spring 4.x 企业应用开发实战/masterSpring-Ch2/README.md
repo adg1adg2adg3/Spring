@@ -1,4 +1,6 @@
 # 本章节简单说明了SPring的注入(setter注入)，源代码bug略多
+
+需要的数据库表
 ```mysql
 CREATE TABLE t_user(
 	user_id INT AUTO_INCREMENT PRIMARY KEY,
