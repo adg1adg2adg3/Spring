@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="
+http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context                http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<!--
+    我们可以使用import标签导入相对于当前路径的其他bean配置文件，也可以把配置文件封装到String数组中传参给ApplicationContext
+    <import resource=""/>
+-->
+
+
+    <!-- 属性中只有id或name时，id或name的值为唯一标识符，
+    id和name同时存在时，id和name的值一样时IoC会自动消除冲突，
+    id和name的值不一样时，id为为标识符，name为别名，
+    可以为name指定多个值，只有name时，第一个值为标识符，有id时，id为标识符
+    class表示相应的组件类,
+    使用空参构造器实例化当前bean -->
+    <!-- 不指定id和name时,可以使用new ClassPathXmlApplicationContext("com/spring/chapter2/helloWord.xml").getBean(hello.class)
+            获取Bean-->
+    <bean id="hello"  class="com.spring.chapter2.HelloWorldImpl"></bean>
+
+<!--
+     也可以使用alias标签给bean定义一个别名，在这里我们把名叫hello的bean定义了一个别名，别名需唯一
+    <alias name="hello" alias="helloWorld"/>
+-->
+
+<!--     使用有参构造器构造一个实例
+    <bean id="hello" class="com.spring.chapter2.HelloWorldImpl">
+        constructor-arg标签用来传参，index表示参数位置（从0开始），value代表值
+        <constructor-arg index="0" value="A"/>
+    </bean>
+-->
+
+<!--
+    使用静态工厂方法实例化bean，id为实例化出来的bean，factory-method为实例化我们目标bean的方法
+    <bean id="HelloMadeFromStaticFactory" class="com.spring.chapter2.StaticHelloFactory" factory-method="GiveMeAHelloWord">
+    </bean>
+  -->
+
+<!--
+    使用需要实例化的工厂实例化bean,我们先实例化工厂类
+    <bean id="HelloWorldFactory" class="com.spring.chapter2.HelloFactory">
+    </bean>
+    使用工厂实例化bean，factory-bean代表工厂类，factory-method代表使用工厂类的哪个方法实例化bean
+    <bean id="HelloMadeFromFactory" factory-bean="HelloMadeFromStaticFactory" factory-method="GiveMeAHelloWord">
+    </bean>
+-->
+
+</beans>
