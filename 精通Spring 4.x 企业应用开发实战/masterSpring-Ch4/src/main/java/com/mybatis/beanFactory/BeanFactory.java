@@ -20,12 +20,13 @@ public class BeanFactory {
         Resource res = resolver.getResource("classpath:com/mybatis/beanfactory/beans.xml");
         System.out.println(res.getURL());
 
-        /* 启动IoC，此时并没有初始化配置文件中的Bean */
+        /* 启动IoC */
         DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-        /* 获取一个读取配置文件的类 */
+        /* 读取配置信息 */
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
-        /* 对配置文件中的Bean初始化 */
         reader.loadBeanDefinitions(res);
+
+        //使用ApplicationContext类则会简单许多
 
         System.out.println("init BeanFactory.");
 
